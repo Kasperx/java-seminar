@@ -2,7 +2,9 @@ package de.linuxhotel.jf.persistence;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Person extends BaseObject implements Serializable{
@@ -12,6 +14,20 @@ public class Person extends BaseObject implements Serializable{
 	private int groesse;
 	private Gender gender;
 	
+	public Person() {
+	}
+
+	@ManyToOne (cascade = CascadeType.ALL)
+	private Company company;
+	
+	public Company getCompany() {
+		return company;
+	}
+
+	public void setCompany(Company company) {
+		this.company = company;
+	}
+
 	public Person(String vorname, String nachname, int groesse, Gender gender) {
 		this.vorname = vorname;
 		this.nachname = nachname;

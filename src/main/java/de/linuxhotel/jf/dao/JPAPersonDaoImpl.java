@@ -25,7 +25,7 @@ public class JPAPersonDaoImpl implements PersonDao {
 	
 	@Override
 	public List<Person> getAll() {
-		return em.createQuery("select p from Person p", Person.class).getResultList();
+		return em.createQuery("select p from Person p left join fetch p.company", Person.class).getResultList();
 	}
 
 	@Override
