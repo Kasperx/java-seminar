@@ -24,8 +24,6 @@ public class TestPersonDaoImpl implements PersonDao {
 	@SuppressWarnings("unchecked")
 	public TestPersonDaoImpl() {
 		
-		if (new File("/var/tmp/data").exists())
-		
 		try (ObjectInputStream oout = new ObjectInputStream(new FileInputStream("/var/tmp/data"));) {
 			pseudodb = (Map <Long, Person>) oout.readObject();
 			counter = pseudodb.size();
@@ -52,7 +50,6 @@ public class TestPersonDaoImpl implements PersonDao {
 			person.setId(++counter);
 		pseudodb.put(person.getId(), person);
 
-		if (new File("/var/tmp/data").exists())
 		// ARM = Automatic Resource Management since 1.7
 		try (ObjectOutputStream oout = new ObjectOutputStream(new FileOutputStream("/var/tmp/data"));) {
 			oout.writeObject(pseudodb);
