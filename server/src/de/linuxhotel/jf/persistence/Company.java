@@ -5,9 +5,12 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import de.linuxhotel.jf.report.Export;
+
 @Entity
 public class Company extends BaseObject{
 
+	@Export(title="company name", order=3)
 	private String name;
 
 	public Company() {

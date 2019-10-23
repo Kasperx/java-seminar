@@ -18,11 +18,33 @@
 					$('#personen').append('<tr><td>'+p.vorname+'</td><td>'+p.nachname+'</td></tr>');
 				});
 			});
+		$('#save').on('click', function(){
+			$.ajax({
+					method: "POST",
+				  	url: "./rest",
+				  	dataType: "json",
+				  	bla: JSON.stringify({
+				  		"vorname": $('#vorname').val,
+				  		"nachname": $('#vorname').val
+				  	}),
+				  	data: JSON.stringify({
+				  		"vorname": $('#vorname').val,
+				  		"nachname": $('#vorname').val
+				  	}),
+				  	success: function(){
+				  		alert("hehe");		
+				  	}
+				}).done(function(data) {
+				  alert("hehe");
+				});
+		});
 	});
 </script>
 </head>
 <body>
-<%=1+1%>
+Vorname<input type="text" id="vorname"><br>
+Nachname<input type="text" id="nachname"><br>
+<button id="save">speichern</button>
 <table>
   <tr>
     <th>Vorname</th>
