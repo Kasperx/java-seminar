@@ -31,11 +31,9 @@
 				  		"vorname": $('#vorname').val,
 				  		"nachname": $('#vorname').val
 				  	}),
-				  	success: function(){
-				  		alert("hehe");		
-				  	}
 				}).done(function(data) {
-				  alert("hehe");
+				  console.log(data);
+				  $('#save').attr('data-id', data.id);
 				});
 		});
 	});

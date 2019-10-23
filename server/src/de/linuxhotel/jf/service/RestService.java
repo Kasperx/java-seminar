@@ -75,6 +75,6 @@ public class RestService {
 	
 	public Response person(Person person) {
 		persondao.saveOrUpdate(person);
-		return Response.ok().build();
+		return Response.ok(person).build();
 	}
 }
