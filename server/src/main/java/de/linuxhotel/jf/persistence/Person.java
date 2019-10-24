@@ -13,9 +13,9 @@ import de.linuxhotel.jf.report.ReportColor;
 @Entity
 public class Person extends BaseObject implements Serializable{
 
-	@Export (title="firstname", order=1, color=ReportColor.RED)
+	@Export (title="i18n.firstname", order=1, color=ReportColor.RED)
 	private String vorname;
-	@Export (title="lastname", order=2, color=ReportColor.RED)
+	@Export (title="i18n.lastname", order=2, color=ReportColor.RED)
 	private String nachname;
 	private int groesse;
 	private Gender gender;

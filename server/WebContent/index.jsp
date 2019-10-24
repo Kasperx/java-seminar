@@ -56,5 +56,6 @@ Nachname<input type="text" id="nachname"><br>
   </tr>
   <tbody id="personen"></tbody>
 </table>
+<a href="/server/rest/personxlsx">Export</a>
 </body>
 </html>

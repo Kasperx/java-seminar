@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.inject.Inject;
 import javax.ws.rs.Consumes;
@@ -12,6 +14,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
+import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
@@ -59,8 +63,10 @@ public class RestService {
 	@GET
 	@Path("personxls")
 	@Produces(value = "application/vnd.ms-excel")
-	public Response abc3(){
+	public Response abc3(@Context HttpHeaders h){
 		
+		Locale l = h.getAcceptableLanguages().get(0);
+		ResourceBundle rb = ResourceBundle.getBundle("MessageResources", l);
 		ByteArrayOutputStream bout = new ByteArrayOutputStream();
 		excelExport.generateReport(personService.searchList(null), bout);
 		ResponseBuilder b = Response.ok(bout.toByteArray());
