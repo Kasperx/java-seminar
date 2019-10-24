@@ -38,7 +38,10 @@ public class JPAPersonDaoImpl implements PersonDao {
 	@Transactional
 	public void saveOrUpdate(Person person) {
 		//em.getTransaction().begin();
-		em.persist(person);
+		if(person.getId()==null)
+			em.persist(person);
+		else
+			em.merge(person);
 		//em.getTransaction().commit();
 	}
 

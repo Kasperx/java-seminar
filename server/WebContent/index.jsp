@@ -8,34 +8,39 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$.ajax({
-			  url: "./rest/persons",
-			  dataType: "json"
-			}).done(function(data) {
-			  console.log(data);
-			  
-			  $(data).each(function(i, p){
-					$('#personen').append('<tr><td>'+p.vorname+'</td><td>'+p.nachname+'</td></tr>');
-				});
-			});
+		
+		load();
+		
 		$('#save').on('click', function(){
 			$.ajax({
 					method: "POST",
 				  	url: "./rest",
 				  	dataType: "json",
-				  	bla: JSON.stringify({
-				  		"vorname": $('#vorname').val,
-				  		"nachname": $('#vorname').val
-				  	}),
+				  	contentType: "application/json",
 				  	data: JSON.stringify({
-				  		"vorname": $('#vorname').val,
-				  		"nachname": $('#vorname').val
+				  		"id": $('#id').attr("data-id"),
+				  		"vorname": $('#vorname').val(),
+				  		"nachname": $('#nachname').val()
 				  	}),
 				}).done(function(data) {
 				  console.log(data);
 				  $('#save').attr('data-id', data.id);
+				  load();
 				});
 		});
+		
+		function load(){
+			$.ajax({
+				  url: "./rest/persons",
+				  dataType: "json"
+				}).done(function(data) {
+				  console.log(data);
+				  $('#personen').empty();
+				  $(data).each(function(i, p){
+						$('#personen').append('<tr><td>'+p.vorname+'</td><td>'+p.nachname+'</td></tr>');
+					});
+				});
+			};
 	});
 </script>
 </head>
